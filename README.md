@@ -111,13 +111,11 @@ When resolving module names to file paths, use the following rules...
     
     3.1 look for a package.json file in the directory and load the `main` property e.g.
 
-```javascript    
-// package.json located in './some-library/'
-{
-  "main": './some-lib.js',
-  "name": 'some-library'
-}
-```
+    // package.json located in './some-library/'
+    {
+      "main": './some-lib.js',
+      "name": 'some-library'
+    }
     
     3.2 if no package.json file exists then look for an index.js file in the directory
 
