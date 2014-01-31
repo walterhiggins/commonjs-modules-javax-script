@@ -59,10 +59,12 @@ To create the `require` function you must first load and evaluate this file.
 
  * On JDK 8's Javascript Engine (Nashorn) there is a native `load()` function which can be used...
 
-       var Require = load('./require.js');
-       var require = Require( './' , [ 'libpath1', 'libpath2' ] );
-       // now you can use require to load commonjs/node style modules
-       var myModule = require('./mymodule');
+```javascript
+var Require = load('./require.js');
+var require = Require( './' , [ 'libpath1', 'libpath2' ] );
+// now you can use require to load commonjs/node style modules
+var myModule = require('./mymodule');
+```
         
  * On JDK 6 and 7 there is no native `load()` function so define one like this...
 
@@ -80,10 +82,12 @@ var load = function( path ) {
 ```
    ..then bootstrap require like this...
 
-       var Require = load('./require.js');
-       var require = Require( new java.io.File( './' ), [ 'libpath1', 'libpath2' ] );
-       // now you can use require to load commonjs/node style modules
-       var myModule = require('./mymodule');
+```javascript
+var Require = load('./require.js');
+var require = Require( new java.io.File( './' ), [ 'libpath1', 'libpath2' ] );
+// now you can use require to load commonjs/node style modules
+var myModule = require('./mymodule');
+```
 
 ### module name resolution
 
@@ -106,12 +110,14 @@ When resolving module names to file paths, use the following rules...
  3. If the module name resolves to a directory then...
     
     3.1 look for a package.json file in the directory and load the `main` property e.g.
-    
-        // package.json located in './some-library/'
-        {
-          "main": './some-lib.js',
-          "name": 'some-library'
-        }
+
+```javascript    
+// package.json located in './some-library/'
+{
+  "main": './some-lib.js',
+  "name": 'some-library'
+}
+```
     
     3.2 if no package.json file exists then look for an index.js file in the directory
 
