@@ -55,7 +55,7 @@ others.
 
 ## Bootstrapping 
 
-To create the `require` function you must first load and evaluate this file. 
+To create the `require` function you must first load and evaluate the `require.js` source file. Since you can't `require('require')` use the native (or custom) `load()` function instead to first load `require.js`.
 
  * On JDK 8's Javascript Engine (Nashorn) there is a native `load()` function which can be used...
 
