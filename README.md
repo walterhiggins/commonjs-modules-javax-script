@@ -66,17 +66,18 @@ To create the `require` function you must first load and evaluate this file.
         
  * On JDK 6 and 7 there is no native `load()` function so define one like this...
 
-       var load = function( path ) { 
-         var line = null,
-             reader = null
-             contents = '';
-         reader = new java.io.BufferedReader( new java.io.FileReader( new java.io.File( path ) ) );
-         while ( ( line = reader.readLine() ) != null ) {
-             contents += line + '\n'
-         }
-         return eval( '(' + contents + ')' );
-       }
-
+```javascript
+var load = function( path ) { 
+  var line = null,
+      reader = null
+      contents = '';
+  reader = new java.io.BufferedReader( new java.io.FileReader( new java.io.File( path ) ) );
+  while ( ( line = reader.readLine() ) != null ) {
+      contents += line + '\n'
+  }
+  return eval( '(' + contents + ')' );
+}
+```
    ..then bootstrap require like this...
 
        var Require = load('./require.js');
