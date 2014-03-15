@@ -18,7 +18,7 @@
       }
     } else {
       // look for an index.js file
-      var indexJsFile = new File( dir + './index.js' );
+      var indexJsFile = new File( dir, './index.js' );
       if ( indexJsFile.exists() ) {
         return indexJsFile;
       } else { 
@@ -135,7 +135,9 @@
     try {
       compiledWrapper = eval(code);
     } catch (e) {
-      throw 'Error:' + e + ' while evaluating module ' + canonizedFilename;
+      throw new Error( "Error evaluating module " + path
+        + " line #" + e.lineNumber
+        + " : " + e.message, canonizedFilename, e.lineNumber );
     }
     var __dirname = '' + file.parentFile.canonicalPath;
     var parameters = [
@@ -150,7 +152,9 @@
         .apply(moduleInfo.exports,  /* this */
                parameters);   
     } catch (e) {
-      throw 'Error:' + e + ' while executing module ' + canonizedFilename;
+      throw new Error( "Error executing module " + path
+        + " line #" + e.lineNumber
+        + " : " + e.message, canonizedFilename, e.lineNumber );
     }
     if ( hooks ) { 
       hooks.loaded( canonizedFilename );
@@ -166,4 +170,5 @@
     };
   };
   return _requireClosure( new java.io.File(rootDir) );
+  // last line deliberately has no semicolon!
 })
